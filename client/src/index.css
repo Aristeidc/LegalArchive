@@ -1,0 +1,413 @@
+:root {
+  --paper:      #E6E2D8;
+  --card:       #F2EEE6;
+  --ink:        #2B2A27;
+  --ink-soft:   #5E5A52;
+  --rule:       #D3CDBF;
+  --accent:     #2F5D50;
+  --accent-pale:#EAF0ED;
+  --accent-dark:#264A40;
+  --on-accent:  #fff;    
+  --alert:      #B83A26;
+  --alert-dark: #962F1F;
+ 
+  --gap:   1.25rem;
+  --radius: 3px;
+}
+ 
+*, *::before, *::after { box-sizing: border-box; }
+ 
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Fira Sans', 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 var(--gap);
+}
+
+.site-header {
+  margin: 0 0 var(--gap);
+  padding: 1.75rem 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-align: center; /*may change later*/
+}
+
+.app-shell{
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.client-page{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.clients-layout{
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    gap: var(--gap);
+    flex: 1;
+    min-height: 0;
+}
+
+.client-panel{
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.clients-column{
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-wrapper{
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/*stacking on narrow windows*/
+@media(max-width:48rem){
+    .app-shell{
+        height: auto;
+    }
+    .clients-layout{
+        grid-template-columns: 1fr;
+    }
+    .list-wrapper{ 
+        flex: none; max-height: 60dvh; 
+    }
+    .client-panel{ 
+        overflow-y: visible; 
+    }
+}
+
+.fav-star {
+  width: 14px;
+  height: 14px;
+  margin-left: 0.4rem;
+  vertical-align: -0.1em;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: -0.1em;
+}
+
+/* --- Forms and controls ---------------------------------------- */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+}
+ 
+textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+ 
+input[type="text"]:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+ 
+button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+ 
+button:hover:not(:disabled) { border-color: var(--ink-soft); }
+ 
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+ 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.link-button{
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.new-client-button {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.new-client-button:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+ 
+/* Primary action: the submit inside a form. */
+form button:not([type="button"]) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color:var(--on-accent);
+}
+ 
+form button:not([type="button"]):hover:not(:disabled) {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  flex: 1 1 10rem;
+}
+
+/* ----------- Client list  -------------------------------- */
+.client-catalog h2 {
+    margin: 0.5rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.client-list{
+    margin:0;
+    padding: 0;
+    list-style: none;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.client-row{
+    border-bottom: 1px solid var(--rule);
+}
+.client-row:last-child{
+    border-bottom: none;
+}
+
+.client-link{
+    display: block;
+    position: relative;
+    padding: 0.65rem 0.9rem 0.65rem 1.1rem;
+    color: inherit;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.client-link::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: transparent;
+}
+
+.client-link:hover::before, .client-link:focus-visible::before {
+  background: var(--accent);
+}
+
+.client-link:hover,
+.client-link:focus-visible {
+  background: var(--accent-pale);
+}
+
+.client-link[aria-current="page"] {
+  background: var(--accent-pale);
+}
+
+.client-card {
+    padding:0.5rem 0.5rem 0.5rem var(--gap);
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+}
+
+.card-top{
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    align-items: center
+}
+.client-details{
+    margin: 0; 
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-button {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.fav-button{
+    border:none
+}
+.fav-button>.fav-star{
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    vertical-align: 0;
+}
+
+.fav-button:hover,.edit-button:hover {
+    background-color: var(--rule);
+}
+
+.client-details dt {
+  padding: 0.55rem 0 0.55rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+ 
+.client-details dd {
+  margin: 0;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+  white-space: pre-line;
+}
+ 
+/* The name is the heading of the card, not a row in it. */
+.client-view > dt:first-of-type { display: none; }
+ 
+.client-view > dd:first-of-type {
+  grid-column: 1 / -1;
+  padding: 0 0 0.6rem;
+  border-top: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.close-button{
+    font-size: larger;
+    border: none;
+}
+.close-button:hover, .cancel-button:hover{
+    background-color: var(--alert);
+    color: var(--on-accent);
+}
+
+.danger-button {
+  background: var(--alert);
+  border-color: var(--alert);
+  color: var(--on-accent);
+}
+
+.danger-button:hover:not(:disabled) {
+  background: var(--alert-dark);
+  border-color: var(--alert-dark);
+}
+
+.delete-actions{
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ------------- ADD FORM ----------------- */
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.field-hint {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-actions p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.empty-state {
+    margin: 0;
+    padding: 2rem var(--gap);
+    text-align: center;
+    color: var(--accent-dark);
+    font-size: 1.25rem;
+}
+
+.empty-panel {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 12rem;
+    justify-content: center;
+}
+
+.error-text{
+    color: var(--alert);
+}
