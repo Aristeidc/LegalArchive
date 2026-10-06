@@ -13,6 +13,12 @@ is in Greek.
 **Status:** v1.0.0. The client directory is complete. A document archive
 index is next.
 
+> **About this repository:** LegalArchive is built for a real law firm, so day-to-day
+> development happens in a private repository. This public repository receives a
+> snapshot at each release. The full development history, twelve tagged releases
+> from v0.1.0 to v1.0.0, is summarised in [CHANGELOG.md](CHANGELOG.md), and the
+> design decisions behind it are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+
 ## Features
 
 - **Client list**, sorted alphabetically, with the firm's shared favorites
