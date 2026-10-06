@@ -5,9 +5,9 @@ runs on the office's own network, with no cloud service, and its interface
 is in Greek.
 
 
-![LegalArchive client directory](docs/screenshot_info_form.png)
+![LegalArchive client directory](docs/Screenshot_info_form.png)
 
-![LegalArchive form](docs/screenshot_add_panel.png)
+![LegalArchive form](docs/Screenshot_add_panel.png)
 
 
 **Status:** v1.0.0. The client directory is complete. A document archive
