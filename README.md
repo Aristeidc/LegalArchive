@@ -1,23 +1,18 @@
 # LegalArchive
 
+![Tests](https://github.com/Aristeidc/LegalArchive/actions/workflows/tests.yml/badge.svg)
+
 A client directory for small law firms, built for Greek-language data. It
 runs on the office's own network, with no cloud service, and its interface
 is in Greek.
 
 
-![LegalArchive client directory](docs/Screenshot_info_form.png)
+![LegalArchive client directory](docs/screenshot_info_form.png)
 
-![LegalArchive form](docs/Screenshot_add_panel.png)
+![LegalArchive form](docs/screenshot_add_panel.png)
 
 
-**Status:** v1.0.0. The client directory is complete. A document archive
-index is next.
-
-> **About this repository:** LegalArchive is built for a real law firm, so day-to-day
-> development happens in a private repository. This public repository receives a
-> snapshot at each release. The full development history, twelve tagged releases
-> from v0.1.0 to v1.0.0, is summarised in [CHANGELOG.md](CHANGELOG.md), and the
-> design decisions behind it are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+**Status:** v1.0.1. The client directory is complete, with a backend test suite running in CI. A document archive index is next.
 
 ## Features
 

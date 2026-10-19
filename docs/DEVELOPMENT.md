@@ -49,6 +49,33 @@ Frontend:
 cd client
 npm install
 ```
+## Running the tests
+
+The backend has a pytest suite in `server/tests/`: unit tests for the name normalizer, and endpoint tests that run against a temporary database, so they never touch `LegalArchive.db`.
+
+From `server/`, with the venv active, install the development dependencies:
+
+```
+pip install -r requirements-dev.txt
+```
+
+Run the suite:
+
+```
+python -m pytest -v
+```
+
+With coverage:
+
+```
+python -m pytest --cov=. --cov-branch --cov-report=term-missing
+```
+
+Use `python -m pytest` rather than bare `pytest`, so the app modules in `server/` can be imported.
+
+Tests marked `xfail` document known gaps that are planned to change, such as POST returning 200 instead of 201. When one is fixed, pytest reports it as `XPASS(strict)`, and its `xfail` marker should be removed.
+
+GitHub Actions runs the same suite with coverage on every push and pull request (`.github/workflows/tests.yml`).
 
 ## Running
 

@@ -3,6 +3,21 @@
 Each version was built on its own branch, merged into `main` with `--no-ff`
 and tagged.
 
+## v1.0.1 — Test suite and CI
+
+- Backend test suite with pytest: unit tests for the name normalizer and
+  endpoint tests for every client route, each run against a fresh temporary
+  database
+- Tests cover validation, search, ordering, deletion, and SQL-injection and
+  LIKE-wildcard cases
+- Known gaps recorded as expected failures: POST returns 200 instead of 201,
+  punctuation-only names are accepted, search depends on word order
+- Coverage reporting with pytest-cov
+- GitHub Actions runs the suite with coverage on every push and pull request
+- Development-only dependencies split into `server/requirements-dev.txt`
+- "Running the tests" section added to `docs/DEVELOPMENT.md`
+- No changes to the app itself
+
 ## v1.0.0 — Client directory release
 
 - New-client form moved into the side panel as its own route, `/clients/new`
