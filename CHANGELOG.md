@@ -3,6 +3,19 @@
 Each version was built on its own branch, merged into `main` with `--no-ff`
 and tagged.
 
+## v1.1.0 — Backend fixes
+
+- Database connections are closed after every request; the test suite's
+  unclosed-connection warnings are down to zero
+- Creating a client returns 201 Created instead of 200
+- Names with no letters or digits (e.g. `%%^`) are rejected with 400 on
+  create and edit
+- 404 responses now say "Client not found"
+- xfail markers removed from now passing tests
+- Internal: list handler renamed to `list_clients`; tests for these fixes
+  pass, so their expected-failure markers were removed (one known gap
+  remains: order-independent search)
+
 ## v1.0.1 — Test suite and CI
 
 - Backend test suite with pytest: unit tests for the name normalizer and
